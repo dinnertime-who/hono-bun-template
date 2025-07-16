@@ -3,8 +3,6 @@ FROM oven/bun:1.2.4-slim as base
 
 WORKDIR /app
 
-ENV DATABASE_URL=$DATABASE_URL
-
 # Install dependencies
 COPY package.json bun.lock ./
 RUN bun install --frozen-lockfile
@@ -21,7 +19,6 @@ FROM oven/bun:1.2.4-slim as runner
 WORKDIR /app
 
 ENV PORT=3000
-ENV DATABASE_URL=$DATABASE_URL
 
 # Copy built application from the base stage
 COPY --from=base /app/dist/index.js ./dist/index.js
