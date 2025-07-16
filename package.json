@@ -1,0 +1,29 @@
+{
+  "name": "image-spell-check",
+  "scripts": {
+    "dev": "bun run --hot src/index.ts",
+    "auth:generate": "bunx @better-auth/cli@latest generate --output ./src/db/schema/auth-schema.ts",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:logs": "docker-compose logs -f"
+  },
+  "dependencies": {
+    "@hono/effect-validator": "^1.2.0",
+    "better-auth": "^1.2.12",
+    "dotenv": "^17.2.0",
+    "drizzle-orm": "^0.44.3",
+    "effect": "^3.16.16",
+    "hono": "^4.8.5",
+    "pg": "^8.16.3"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/pg": "^8.15.4",
+    "drizzle-kit": "^0.31.4",
+    "tsx": "^4.20.3"
+  }
+}

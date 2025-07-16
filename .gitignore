@@ -1,0 +1,15 @@
+# deps
+node_modules/
+
+# env
+.env
+.env*
+
+# macos
+.DS_Store
+
+# database
+database/
+
+# drizzle
+drizzle/
