@@ -1,11 +1,24 @@
 import { Hono } from "hono";
+import { contextStorage } from "hono/context-storage";
+import { logger } from "hono/logger";
+import { cors } from "hono/cors";
+import { csrf } from "hono/csrf";
+import { requestId } from "hono/request-id";
+import { secureHeaders } from "hono/secure-headers";
 import { testConnection } from "./db";
-import { AuthType } from "./lib/auth";
 import routes from "./routes";
+import type { Env } from "./lib/type";
 
-const app = new Hono<{ Variables: AuthType }>({
+const app = new Hono<Env>({
   strict: false,
 });
+
+app.use(contextStorage());
+app.use(logger());
+app.use(cors({ origin: "*" }));
+app.use(csrf());
+app.use("*", requestId());
+app.use(secureHeaders());
 
 routes.forEach((route) => {
   app.basePath("/api").route("/", route);

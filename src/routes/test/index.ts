@@ -1,9 +1,9 @@
 import { Hono } from "hono";
 import { effectValidator } from "@hono/effect-validator";
 import { Test } from "@/schemas/test";
-import { AuthType } from "@/lib/auth";
+import type { Env } from "@/lib/type";
 
-const testRouter = new Hono<{ Bindings: AuthType }>();
+const testRouter = new Hono<Env>();
 
 testRouter.basePath("/test").get(
   "/", //
